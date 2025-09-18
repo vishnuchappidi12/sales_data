@@ -1,0 +1,13 @@
+config {
+
+type: "view"
+}
+
+
+SELECT
+order_id,
+product_id,
+quantity,
+price AS unit_price 
+FROM
+${ref("order_items")}

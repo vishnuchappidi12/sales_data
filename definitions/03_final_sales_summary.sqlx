@@ -1,0 +1,21 @@
+config {
+
+type: "table"
+}
+
+
+SELECT
+o.order_id,
+o.customer_id,
+o.order_date,
+SUM(oi.quantity * oi.unit_price) AS total_revenue
+FROM
+${ref("01_stg_orders")} AS o -- References our staged orders view
+JOIN
+${ref("02_stg_order_items")} AS oi -- References our staged order items view
+ON
+o.order_id = oi.order_id
+GROUP BY
+o.order_id,
+o.customer_id,
+o.order_date
