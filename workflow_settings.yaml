@@ -1,0 +1,4 @@
+defaultProject: virtual-ego-471706-k3
+defaultDataset: newlysalesdata
+defaultAssertionDataset: newlysalesdata_assertions
+dataformCoreVersion: 3.0.26
