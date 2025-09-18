@@ -1,0 +1,11 @@
+config {
+  type: "view",
+  description: "A staging view for the payments data."
+}
+
+SELECT
+  order_id,
+  payment_method,
+  CAST(amount AS NUMERIC) AS payment_amount
+FROM
+  ${ref("payments")}

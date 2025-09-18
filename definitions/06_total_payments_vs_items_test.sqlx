@@ -1,0 +1,9 @@
+config {
+  type: "assertion",
+  description: "Test to ensure total payments match total item costs."
+}
+
+SELECT *
+FROM ${ref("05_final_sales_and_payments")}
+WHERE
+  ABS(payment_amount - total_item_cost) > 0.01

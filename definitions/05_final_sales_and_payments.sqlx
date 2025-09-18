@@ -1,0 +1,20 @@
+config {
+  type: "table",
+  description: "Final sales summary joined with payment data."
+}
+
+SELECT
+  o.order_id,
+  o.customer_id,
+  o.order_date,
+  p.payment_method,
+  p.payment_amount,
+  SUM(oi.quantity * oi.unit_price) AS total_item_cost
+FROM
+  ${ref("01_stg_orders")} AS o
+JOIN
+  ${ref("02_stg_order_items")} AS oi ON o.order_id = oi.order_id
+JOIN
+  ${ref("04_payments")} AS p ON o.order_id = p.order_id
+GROUP BY
+  1, 2, 3, 4, 5
