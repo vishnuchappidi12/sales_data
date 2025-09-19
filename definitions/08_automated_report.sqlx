@@ -1,0 +1,12 @@
+config { 
+  type: "table", 
+  description: "A simple report created via the command line." 
+} 
+ 
+SELECT 
+  order_date, 
+  COUNT(order_id) AS number_of_orders 
+FROM 
+  ${ref("orders")} 
+GROUP BY 
+  1 
